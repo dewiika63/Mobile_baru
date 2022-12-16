@@ -8,10 +8,21 @@ class Telur extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[100],
+      backgroundColor: Colors.amber[200],
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('Telur'),
+        title: const Text('Telur', style: TextStyle(color: Colors.white),),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          hoverColor: Colors.transparent,
+          splashRadius: 20,
+        ),
         centerTitle: true,
       ),
       body: ListView(

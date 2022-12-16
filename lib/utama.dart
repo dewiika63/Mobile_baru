@@ -31,48 +31,48 @@ class _UtamaState extends State<Utama> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'KUB App',
-      home: Scaffold(
-        body: Center(child: _page[_bottom]),
-        bottomNavigationBar: BottomNavigationBar(
-          // backgroundColor: Colors.amber[300],
-          currentIndex: _bottom,
-          unselectedItemColor: Colors.black,
-          selectedItemColor: Colors.orange[600],
-          onTap: _onTabTapped,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home, size: 30,
-                  //  color: Colors.black,
-                ),
-                label: 'Dashboard',
-                tooltip: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.note_add_sharp, size: 30,
-                  //color: Colors.orange,
-                ),
-                label: 'Pendataan',
-                tooltip: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.shopping_cart, size: 30,
-                  //  color: Colors.orange,
-                ),
-                label: 'Data Barang',
-                tooltip: ''),
-            //  BottomNavigationBarItem(
-            //    icon: Icon(
-            //    Icons.close, size: 30,
-            //  color: Colors.orange,
-            //),
-            //label: 'Logout',
-            //tooltip: ''),
-          ],
-        ),
+    return Scaffold(
+      //title: 'KUB App',
+      //home: Scaffold(
+      body: Center(child: _page[_bottom]),
+      bottomNavigationBar: BottomNavigationBar(
+        // backgroundColor: Colors.amber[300],
+        currentIndex: _bottom,
+        unselectedItemColor: Colors.blueGrey[300],
+        selectedItemColor: Colors.orange[600],
+        onTap: _onTabTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home, size: 30,
+                //  color: Colors.black,
+              ),
+              label: 'Dashboard',
+              tooltip: ''),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.note_add_sharp, size: 30,
+                //color: Colors.orange,
+              ),
+              label: 'Pendataan',
+              tooltip: ''),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_cart, size: 30,
+                //  color: Colors.orange,
+              ),
+              label: 'Data Barang',
+              tooltip: ''),
+          //  BottomNavigationBarItem(
+          //    icon: Icon(
+          //    Icons.close, size: 30,
+          //  color: Colors.orange,
+          //),
+          //label: 'Logout',
+          //tooltip: ''),
+        ],
       ),
     );
+    //);
   }
 }

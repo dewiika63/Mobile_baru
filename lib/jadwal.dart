@@ -11,7 +11,21 @@ class Jadwal extends StatelessWidget {
       backgroundColor: Colors.amber[200],
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('Jadwal'),
+        title: const Text(
+          'Jadwal',
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          hoverColor: Colors.transparent,
+          splashRadius: 20,
+        ),
         centerTitle: true,
       ),
       body: ListView(
@@ -79,7 +93,7 @@ class Jadwal extends StatelessWidget {
                   ],
                 ),
               ),
-              const Text("Memberi Pakan"),             
+              const Text("Memberi Pakan"),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 50,
@@ -89,7 +103,7 @@ class Jadwal extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Text("Mengambil Telur"),              
+              const Text("Mengambil Telur"),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 50,
@@ -99,7 +113,7 @@ class Jadwal extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Text("Memberi Vaksin"),              
+              const Text("Memberi Vaksin"),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 50,

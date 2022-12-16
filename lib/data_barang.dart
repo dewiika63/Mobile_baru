@@ -11,7 +11,10 @@ class DataBarang extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('DATA BARANG'),
+        title: const Text(
+          'DATA BARANG',
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
       ),
       backgroundColor: Colors.amber[200],

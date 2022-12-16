@@ -11,7 +11,7 @@ class Pendataan extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('P E N D A T A A N'),
+        title: const Text('P E N D A T A A N', style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
       backgroundColor: Colors.amber[200],

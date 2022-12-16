@@ -1,17 +1,49 @@
 import 'package:coba_login/ayam.dart';
 import 'package:coba_login/jadwal.dart';
+import 'package:coba_login/login.dart';
+import 'package:coba_login/logout.dart';
 import 'package:coba_login/telur.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
+  // get icon => null;
+
+  //void main() {
+  //runApp(MaterialApp(
+  //home: Home(),
+  //routes: <String, WidgetBuilder>{
+  //'Logout': (Buildcontext) => new LogoutDialog(),
+  //},
+  //));
+  //}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('D A S H B O A R D'),
+        title: const Text(
+          'D A S H B O A R D',
+          style: TextStyle(color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+              hoverColor: Colors.transparent,
+              splashRadius: 20,
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return LogoutPage();
+                    });
+              },
+              icon: const Icon(
+                Icons.logout_outlined,
+                color: Colors.white,
+              ))
+        ],
         centerTitle: true,
       ),
       backgroundColor: Colors.amber[200],

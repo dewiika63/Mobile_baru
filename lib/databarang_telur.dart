@@ -9,8 +9,19 @@ class DataBarangTelur extends StatelessWidget {
       backgroundColor: Colors.amber[200],
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('Data Barang Telur'),
+        title: const Text('Data Barang Telur', style: TextStyle(color: Colors.white),),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          hoverColor: Colors.transparent,
+          splashRadius: 20,
+        ),
       ),
       body: Center(
         child: Column(

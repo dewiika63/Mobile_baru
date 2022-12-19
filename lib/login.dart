@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:coba_login/home.dart';
 import 'package:coba_login/utama.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -19,23 +23,36 @@ class _LoginState extends State<Login> {
   }
 
   String alert = "Login";
-  String username = "Dewi";
-  String password = "123456";
+  // String email = "Dewi";
+  // String password = "123456";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController usernameInput = TextEditingController();
-  TextEditingController passowrdInput = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController passowrd = TextEditingController();
 
-  void prosesLogin() {
+  void prosesLogin() async {
     if (_formKey.currentState!.validate()) {
-      if (usernameInput.text == username && passowrdInput.text == password) {
+      final response = await http
+          .post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
+        "email": email.text,
+        "password": passowrd.text,
+      });
+      var queryResult = json.decode(response.body);
+      if (response.statusCode == 200) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Utama()));
       } else {
-        setState(() {
-          alert = "Username atau Password Salah";
-        });
+        alert = "email atau Password Salah";
       }
+
+      // if (email.text == "email" && passowrd.text == "password") {
+      //   Navigator.pushReplacement(
+      //       context, MaterialPageRoute(builder: (context) => Utama()));
+      // } else {
+      //   setState(() {
+      //     alert = "email atau Password Salah";
+      //   });
+      // }
     }
   }
 
@@ -68,7 +85,7 @@ class _LoginState extends State<Login> {
                 height: 20,
               ),
               const Text(
-                "Selamat Data di KUB",
+                "Selamat queryResult di KUB",
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
               const SizedBox(
@@ -83,10 +100,10 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: <Widget>[
                     TextFormField(
-                      controller: usernameInput,
+                      controller: email,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan Email atau Username Anda";
+                          return "Masukan Email Anda";
                         }
                         return null;
                       },
@@ -98,15 +115,15 @@ class _LoginState extends State<Login> {
                             Icons.email_outlined,
                             size: 30,
                           ),
-                          hintText: "Masukan Email atau Username",
-                          labelText: "Email atau Username",
+                          hintText: "Masukan Email",
+                          labelText: "Email",
                           labelStyle: TextStyle(color: Colors.black)),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
-                      controller: passowrdInput,
+                      controller: passowrd,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Masukan Password Anda";

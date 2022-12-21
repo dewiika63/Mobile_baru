@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
+import 'dart:convert';
 
 class PendataanTelur extends StatefulWidget {
   const PendataanTelur({Key? key}) : super(key: key);
@@ -10,21 +10,26 @@ class PendataanTelur extends StatefulWidget {
 }
 
 class _PendataanTelurState extends State<PendataanTelur> {
-  final formKey = GlobalKey<FormState>();
-  TextEditingController id_telur = TextEditingController();
-  TextEditingController tanggal = TextEditingController();
-  TextEditingController berat = TextEditingController();
-  _simpan() async {
-    final respone = await http
-        .post(Uri.parse("http://127.0.0.1/kub/api/brg_ayam.php"), body: {
+  //final formKey = GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
+  TextEditingController id_telur = new TextEditingController();
+  TextEditingController tanggal = new TextEditingController();
+  TextEditingController berat = new TextEditingController();
+
+  void tambahTelur() {
+    // _simpan() async {
+    //   var respone = await http
+    // final respone = await http
+    http.post(Uri.parse("http://127.0.0.1/kub/api/tambah_telur.php"), body: {
       "id_telur": id_telur.text,
       "tanggal": tanggal.text,
       "berat": berat.text,
     });
-    if (respone.statusCode == 200) {
-      return true;
-    }
-    return false;
+    // var data = json.decode(respone.body);
+    // if (data == "Sukses") {
+    //   return true;
+    // }
+    // return false;
   }
 
   @override
@@ -33,8 +38,9 @@ class _PendataanTelurState extends State<PendataanTelur> {
       appBar: AppBar(
         title: Text("Tambah Data Telur"),
       ),
-      body: Form(
-          key: formKey,
+      body: ListView(children: <Widget>[
+        Form(
+          // key: formKey,
           child: Container(
               padding: EdgeInsets.all(20),
               child: Column(
@@ -65,6 +71,7 @@ class _PendataanTelurState extends State<PendataanTelur> {
                     },
                     decoration: InputDecoration(
                         hintText: "Tanggal",
+                        labelText: "Tanggal",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
                   ),
@@ -79,33 +86,38 @@ class _PendataanTelurState extends State<PendataanTelur> {
                     },
                     decoration: InputDecoration(
                         hintText: "Berat",
+                        labelText: "Berat",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        _simpan().then((value) {
-                          if (value) {
-                            final snackBar = SnackBar(
-                                content: Text("Data Berhasil Di Simpann"));
-                          } else {
-                            final snackBar = SnackBar(
-                                content: Text("Data Gagal Di Simpann"));
-                          }
-                        });
-                      }
+                      tambahTelur();
+                      Navigator.pop(context, "Simpan");
+                      // if (formKey.currentState!.validate()) {
+                      //   _simpan().then((value) {
+                      //     if (value) {
+                      //       final snackBar = SnackBar(
+                      //           content: Text("Data Berhasil Di Simpann"));
+                      //     } else {
+                      //       final snackBar = SnackBar(
+                      //           content: Text("Data Gagal Di Simpann"));
+                      //     }
+                      //   });
+                      // }
                     },
                     child: Text("Simpan"),
                   )
                 ],
-              ))),
+              )),
+        ),
+      ]),
     );
   }
 }

@@ -23,36 +23,49 @@ class _LoginState extends State<Login> {
   }
 
   String alert = "Login";
-  // String email = "Dewi";
-  // String password = "123456";
+  String email = "Dewi";
+  String password = "123456";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController email = TextEditingController();
-  TextEditingController passowrd = TextEditingController();
+  TextEditingController emailInput = TextEditingController();
+  TextEditingController passowrdInput = TextEditingController();
 
-  void prosesLogin() async {
+  // Future login() async {
+  //   var response =
+  //       await http.post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
+  //     "email": email.text,
+  //     "password": passowrd.text,
+  //   });
+  //   var data = json.decode(response.body);
+  //   if (data == "Succes") {
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) => Utama()));
+  //   } else {
+  //     alert = "Email atau password salah";
+  //   }
+  // }
+  void prosesLogin() {
     if (_formKey.currentState!.validate()) {
-      final response = await http
-          .post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
-        "email": email.text,
-        "password": passowrd.text,
-      });
-      var queryResult = json.decode(response.body);
-      if (response.statusCode == 200) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Utama()));
-      } else {
-        alert = "email atau Password Salah";
-      }
-
-      // if (email.text == "email" && passowrd.text == "password") {
+      // final response =
+      //     await http.post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
+      //   "email": email.text,
+      //   "password": passowrd.text,
+      // });
+      // var data = json.decode(response.body);
+      // if (data == "Sukses") {
       //   Navigator.pushReplacement(
       //       context, MaterialPageRoute(builder: (context) => Utama()));
       // } else {
-      //   setState(() {
-      //     alert = "email atau Password Salah";
-      //   });
+      //   alert = "email atau Password Salah";
       // }
+
+      if (emailInput.text == email && passowrdInput.text == password) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Utama()));
+      } else {
+        setState(() {
+          alert = "email atau Password Salah";
+        });
+      }
     }
   }
 
@@ -100,7 +113,7 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: <Widget>[
                     TextFormField(
-                      controller: email,
+                      controller: emailInput,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Masukan Email Anda";
@@ -123,7 +136,7 @@ class _LoginState extends State<Login> {
                       height: 20,
                     ),
                     TextFormField(
-                      controller: passowrd,
+                      controller: passowrdInput,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Masukan Password Anda";

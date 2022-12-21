@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EditAyam extends StatefulWidget {
-  const EditAyam({Key? key}) : super(key: key);
+class EditTelur extends StatefulWidget {
+  const EditTelur({Key? key}) : super(key: key);
 
   @override
-  State<EditAyam> createState() => _EditAyamState();
+  State<EditTelur> createState() => _EditTelurState();
 }
 
-class _EditAyamState extends State<EditAyam> {
+class _EditTelurState extends State<EditTelur> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

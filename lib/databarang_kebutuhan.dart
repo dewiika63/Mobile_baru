@@ -1,7 +1,8 @@
 import 'dart:convert';
 //import 'dart:ffi';
 //import 'package:coba_login/ayam.dart';
-import 'package:coba_login/edit_ayam.dart';
+import 'package:coba_login/detail_kebutuhan.dart';
+import 'package:coba_login/edit_telur.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -66,9 +67,11 @@ class _DataBarangKebutuhanState extends State<DataBarangKebutuhan> {
         itemBuilder: (context, index) {
           return Container(
             padding: EdgeInsets.all(5),
-            // child: GestureDetector(
-            //   onTap: () => Navigator.push(context,
-            //       MaterialPageRoute(builder: (context) => const DetailAyam())),
+            child:GestureDetector(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context)=> DetailKebutuhan(index: index, list: _listkebutuhan, )
+                )),
             child: Card(
               color: Colors.amber[50],
               child: ListTile(
@@ -81,7 +84,7 @@ class _DataBarangKebutuhanState extends State<DataBarangKebutuhan> {
                 ),
               ),
             ),
-            // ),
+            ),
           );
         },
       ),

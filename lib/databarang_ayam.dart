@@ -1,11 +1,12 @@
 import 'dart:convert';
 //import 'dart:ffi';
 //import 'package:coba_login/ayam.dart';
+import 'package:coba_login/detail_ayam.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-import 'edit_ayam.dart';
+import 'edit_telur.dart';
 
 class DataBarangAyam extends StatefulWidget {
   const DataBarangAyam({Key? key}) : super(key: key);
@@ -66,20 +67,29 @@ class _DataBarangAyamState extends State<DataBarangAyam> {
             itemCount: _listayam.length,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.all(5),
-                // child: GestureDetector(
-                //   onTap: () => Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) =>  DetailAyam())),
-                child: Card(
-                  color: Colors.amber[50],
-                  child: ListTile(
-                    leading: Icon(Icons.notes_outlined),
-                    title: Text("Id Ayam : ${_listayam[index]['id_ayam']}", style: TextStyle(fontSize: 15),),
-                    subtitle:
-                        Text("Jumlah : ${_listayam[index]['jumlah_ayam']}"),
-                  ),
-                ),
-              );
+                  padding: EdgeInsets.all(5),
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailAyam(
+                              index: index,
+                              list: _listayam,
+                            ))),
+                    // child: GestureDetector(
+                    //   onTap: () => Navigator.push(context,
+                    //       MaterialPageRoute(builder: (context) =>  DetailAyam())),
+                    child: Card(
+                      color: Colors.amber[50],
+                      child: ListTile(
+                        leading: Icon(Icons.notes_outlined),
+                        title: Text(
+                          "Id Ayam : ${_listayam[index]['id_ayam']}",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        subtitle:
+                            Text("Jumlah : ${_listayam[index]['jumlah_ayam']}"),
+                      ),
+                    ),
+                  ));
             }));
   }
 }

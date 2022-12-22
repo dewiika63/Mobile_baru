@@ -49,7 +49,7 @@ class Pendataan extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const PendataanAyam()));
+                        builder: (context) =>  PendataanAyam()));
               },
               splashColor: Colors.transparent,
               child: Column(

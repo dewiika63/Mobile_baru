@@ -10,26 +10,26 @@ class PendataanTelur extends StatefulWidget {
 }
 
 class _PendataanTelurState extends State<PendataanTelur> {
-  //final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   // ignore: non_constant_identifier_names
-  TextEditingController id_telur = new TextEditingController();
-  TextEditingController tanggal = new TextEditingController();
-  TextEditingController berat = new TextEditingController();
+  TextEditingController id_telur = TextEditingController();
+  TextEditingController tanggal = TextEditingController();
+  TextEditingController berat = TextEditingController();
 
-  void tambahTelur() {
-    // _simpan() async {
+  //void tambahTelur() {
+  _simpan() async {
     //   var respone = await http
-    // final respone = await http
-    http.post(Uri.parse("http://127.0.0.1/kub/api/tambah_telur.php"), body: {
+    final respone = await http
+        .post(Uri.parse("http://127.0.0.1/kub/api/tambah_telur.php"), body: {
       "id_telur": id_telur.text,
       "tanggal": tanggal.text,
       "berat": berat.text,
     });
-    // var data = json.decode(respone.body);
-    // if (data == "Sukses") {
-    //   return true;
-    // }
-    // return false;
+    var data = json.decode(respone.body);
+    if (data == "Sukses") {
+      return true;
+    }
+    return false;
   }
 
   @override
@@ -40,7 +40,7 @@ class _PendataanTelurState extends State<PendataanTelur> {
       ),
       body: ListView(children: <Widget>[
         Form(
-          // key: formKey,
+          key: formKey,
           child: Container(
               padding: EdgeInsets.all(20),
               child: Column(
@@ -98,19 +98,23 @@ class _PendataanTelurState extends State<PendataanTelur> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
                     onPressed: () {
-                      tambahTelur();
-                      Navigator.pop(context, "Simpan");
-                      // if (formKey.currentState!.validate()) {
-                      //   _simpan().then((value) {
-                      //     if (value) {
-                      //       final snackBar = SnackBar(
-                      //           content: Text("Data Berhasil Di Simpann"));
-                      //     } else {
-                      //       final snackBar = SnackBar(
-                      //           content: Text("Data Gagal Di Simpann"));
-                      //     }
-                      //   });
-                      // }
+                      // tambahTelur();
+                      // Navigator.pop(context, "Simpan");
+                      if (formKey.currentState!.validate()) {
+                        _simpan().then((value) {
+                          if (value) {
+                            final snackBar = SnackBar(
+                                content: Text("Data Berhasil Di Simpan"));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          } else {
+                            final snackBar =
+                                SnackBar(content: Text("Data Gagal Di Simpan"));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        });
+                      }
                     },
                     child: Text("Simpan"),
                   )

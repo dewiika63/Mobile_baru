@@ -23,8 +23,9 @@ class _LoginState extends State<Login> {
   }
 
   String alert = "Login";
-  String email = "Dewi";
-  String password = "123456";
+  late String email, password;
+  // String email = "Dewi";
+  // String password = "123456";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailInput = TextEditingController();
@@ -43,14 +44,27 @@ class _LoginState extends State<Login> {
   //     alert = "Email atau password salah";
   //   }
   // }
-  void prosesLogin() {
+  void prosesLogin() async {
     if (_formKey.currentState!.validate()) {
-      // final response =
-      //     await http.post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
-      //   "email": email.text,
-      //   "password": passowrd.text,
-      // });
-      // var data = json.decode(response.body);
+      final response = await http
+          .post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
+        "email": emailInput.text,
+        "password": passowrdInput.text,
+      });
+      var data = json.decode(response.body);
+      if (data.length < 1) {
+        setState(() {
+          alert = "Akun tidak ditemukan, silahkan cek email dan password anda";
+          //alert = "Silahkan cek email dan password anda";
+        });
+      } else {
+        setState(() {
+          email = data[0]["email"];
+          password = data[0]["password"];
+        });
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Utama()));
+      }
       // if (data == "Sukses") {
       //   Navigator.pushReplacement(
       //       context, MaterialPageRoute(builder: (context) => Utama()));
@@ -58,14 +72,14 @@ class _LoginState extends State<Login> {
       //   alert = "email atau Password Salah";
       // }
 
-      if (emailInput.text == email && passowrdInput.text == password) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Utama()));
-      } else {
-        setState(() {
-          alert = "email atau Password Salah";
-        });
-      }
+      // if (emailInput.text == email && passowrdInput.text == password) {
+      //   Navigator.pushReplacement(
+      //       context, MaterialPageRoute(builder: (context) => Utama()));
+      // } else {
+      //   setState(() {
+      //     alert = "email atau Password Salah";
+      //   });
+      // }
     }
   }
 
@@ -98,7 +112,7 @@ class _LoginState extends State<Login> {
                 height: 20,
               ),
               const Text(
-                "Selamat queryResult di KUB",
+                "Selamat Datang Di KUB",
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
               const SizedBox(

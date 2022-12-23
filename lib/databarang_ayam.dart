@@ -80,7 +80,7 @@ class _DataBarangAyamState extends State<DataBarangAyam> {
                     child: Card(
                       color: Colors.amber[50],
                       child: ListTile(
-                        leading: Icon(Icons.notes_outlined),
+                        leading: Icon(Icons.widgets_outlined),
                         title: Text(
                           "Id Ayam : ${_listayam[index]['id_ayam']}",
                           style: TextStyle(fontSize: 15),

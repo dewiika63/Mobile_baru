@@ -75,7 +75,7 @@ class _DataBarangKebutuhanState extends State<DataBarangKebutuhan> {
             child: Card(
               color: Colors.amber[50],
               child: ListTile(
-                leading: Icon(Icons.notes_outlined),
+                leading: Icon(Icons.widgets_outlined),
                 title: Text("Nama : ${_listkebutuhan[index]['nama_kbth']}"),
                 subtitle: Text(
                   "Jumlah : ${_listkebutuhan[index]['jumlah_kbth']}",

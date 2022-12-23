@@ -9,9 +9,6 @@ class EditTelur extends StatefulWidget {
   final List list;
   final int index;
   EditTelur({required this.index, required this.list});
-  // const EditTelur({Key? key}) : super(key: key);
-  // final Map ListTelut;
-  // EditTelur({required this.ListTelut});
 
   @override
   State<EditTelur> createState() => _EditTelurState();
@@ -38,22 +35,44 @@ class _EditTelurState extends State<EditTelur> {
     super.initState();
   }
 
-  void editTelur() {
-    //Future _edit() async {
-    //  var respone = await http
-    //var url = "http://127.0.0.1/kub/api/edit_telur.php";
-    //final respone = await http
-    http.post(Uri.parse("http://127.0.0.1/kub/api/edit_telur.php"), body: {
-      "id_telur": widget.list[widget.index]['id'],
+  // void editTelur() {
+  //   http.post(Uri.parse("http://127.0.0.1/kub/api/edit_telur.php"), body: {
+  //     "id_telur": widget.list[widget.index]['id_telur'],
+  //     //"id_kbth": id_kbth,
+  //     "gread": gread.text,
+  //     "berat_telur": berat_telur.text
+  //   });
+  // }
+  _edit() async {
+    final respone = await http
+        .post(Uri.parse("http://127.0.0.1/kub/api/edit_telur.php"), body: {
+      "id_telur": widget.list[widget.index]['id_telur'],
       "gread": gread.text,
       "berat_telur": berat_telur.text,
     });
-    // var data = json.decode(respone.body);
-    // if (data == "Sukses") {
-    //   return true;
-    // }
-    // return false;
+    var data = json.decode(respone.body);
+    //print(data);
+    if (data == "Sukses") {
+      return true;
+    }
+    return false;
   }
+  // void editTelur() {
+  //   //Future _edit() async {
+  //   //  var respone = await http
+  //   //var url = "http://127.0.0.1/kub/api/edit_telur.php";
+  //   //final respone = await http
+  //   http.post(Uri.parse("http://127.0.0.1/kub/api/edit_telur.php"), body: {
+  //     "id_telur": widget.list[widget.index]['id'],
+  //     "gread": gread.text,
+  //     "berat_telur": berat_telur.text,
+  //   });
+  //   // var data = json.decode(respone.body);
+  //   // if (data == "Sukses") {
+  //   //   return true;
+  //   // }
+  //   // return false;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +81,24 @@ class _EditTelurState extends State<EditTelur> {
     // berat_telur.text = widget.ListTelut['berat_telur'];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Data Telur"),
+        title: Text("Edit Data Telur", style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          hoverColor: Colors.transparent,
+          splashRadius: 20,
+        ),
+        centerTitle: true,
       ),
+      backgroundColor: Colors.amber[200],
       body: ListView(children: <Widget>[
         Form(
-          //  key: formKey,
+          key: formKey,
           child: Container(
               padding: EdgeInsets.all(20),
               child: Column(
@@ -76,12 +108,12 @@ class _EditTelurState extends State<EditTelur> {
                     controller: id_telur,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Id Telur";
+                        return "Id Telur Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: "Id Telur",
+                      hintText: "Masukan Id Telur",
                       labelText: "Id Telur",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
@@ -92,13 +124,13 @@ class _EditTelurState extends State<EditTelur> {
                     controller: gread,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Gread";
+                        return "Gread Telur Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "Gread",
-                        labelText: "Gread",
+                        hintText: "Masukan Gread Telur",
+                        labelText: "Gread Telur",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
                   ),
@@ -107,13 +139,13 @@ class _EditTelurState extends State<EditTelur> {
                     controller: berat_telur,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Berat";
+                        return "Berat Telur Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "Berat",
-                        labelText: "Berat",
+                        hintText: "Masukan Berat Telur",
+                        labelText: "Berat Telur",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
                   ),
@@ -125,29 +157,31 @@ class _EditTelurState extends State<EditTelur> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
                     onPressed: () {
-                      //  _edit();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DataBarangTelur()));
-                      // Navigator.pop(context, "Simpan");
-                      // if (formKey.currentState!.validate()) {
-                      //   _edit().then((value) {
-                      //     if (value) {
-                      //       final snackBar = SnackBar(
-                      //           content: Text("Data Berhasil Di Edit"));
-                      //       ScaffoldMessenger.of(context)
-                      //           .showSnackBar(snackBar);
-                      //     } else {
-                      //       final snackBar =
-                      //           SnackBar(content: Text("Data Gagal Di Edit"));
-                      //       ScaffoldMessenger.of(context)
-                      //           .showSnackBar(snackBar);
-                      //     }
-                      //   });
-                      // }
+                      if (formKey.currentState!.validate()) {
+                        _edit().then((value) {
+                          if (value) {
+                            final snackBar = SnackBar(
+                                content: Text("Data Berhasil Di Edit"));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          } else {
+                            final snackBar =
+                                SnackBar(content: Text("Data Gagal Di Edit"));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        });
+                        // _edit();
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => DataBarangTelur()));
+                      }
                     },
-                    child: Text("Edit"),
+                    child: Text(
+                      "Edit",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   )
                 ],
               )),

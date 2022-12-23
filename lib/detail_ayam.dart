@@ -70,7 +70,7 @@ class _DetailAyamState extends State<DetailAyam> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const EditAyam()));
+                              builder: (context) =>  EditAyam(list: widget.list, index: widget.index,)));
                     },
                     child: const Text("EDIT"),
                   ),

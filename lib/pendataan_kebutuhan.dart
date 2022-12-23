@@ -37,8 +37,22 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tambah Data Kebutuhan"),
+        title: Text("Pengeluaran Kebutuhan Ayam",
+            style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          hoverColor: Colors.transparent,
+          splashRadius: 20,
+        ),
+        centerTitle: true,
       ),
+      backgroundColor: Colors.amber[200],
       body: ListView(children: <Widget>[
         Form(
           key: formKey,
@@ -51,12 +65,12 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
                     controller: id_kbth,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Id Kebutuhan";
+                        return "Id Kebutuhan Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: "Id Kebutuhan",
+                      hintText: "Masukan Id Kebutuhan",
                       labelText: "Id Kebutuhan",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
@@ -67,12 +81,12 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
                     controller: tanggal,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Tanggal";
+                        return "Tanggal Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "Tanggal",
+                        hintText: "Masukan Tanggal",
                         labelText: "Tanggal",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
@@ -82,12 +96,12 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
                     controller: jumlah,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Jumlah";
+                        return "Jumlah Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "Jumlah",
+                        hintText: "Masukan Jumlah",
                         labelText: "Jumlah",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
@@ -100,25 +114,42 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
                     onPressed: () {
-                      // tambahTelur();
-                      // Navigator.pop(context, "Simpan");
                       if (formKey.currentState!.validate()) {
                         _simpan().then((value) {
                           if (value) {
-                            final snackBar =
-                                SnackBar(content: Text("Data Gagal Di Simpan"));
+                            final snackBar = SnackBar(
+                                content: Text("Data Berhasil Di Simpan"));
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           } else {
-                            final snackBar = SnackBar(
-                                content: Text("Data Berhasil Di Simpan"));
+                            final snackBar =
+                                SnackBar(content: Text("Data Gagal Di Simpan"));
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           }
                         });
                       }
-                    },
-                    child: Text("Simpan"),
+                    }
+                    // tambahTelur();
+                    // Navigator.pop(context, "Simpan");
+                    // if (formKey.currentState!.validate()) {
+                    //   _simpan().then((value) {
+                    //     if (value) {
+                    //       final snackBar =
+                    //           SnackBar(content: Text("Data Gagal Di Simpan"));
+                    //       ScaffoldMessenger.of(context)
+                    //           .showSnackBar(snackBar);
+                    //     } else {
+                    //       final snackBar = SnackBar(
+                    //           content: Text("Data Berhasil Di Simpan"));
+                    //       ScaffoldMessenger.of(context)
+                    //           .showSnackBar(snackBar);
+                    //     }
+                    //   });
+                    // }
+                    ,
+                    child:
+                        Text("Simpan", style: TextStyle(color: Colors.white)),
                   )
                 ],
               )),

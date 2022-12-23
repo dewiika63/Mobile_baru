@@ -69,7 +69,8 @@ class _DetailTelurState extends State<DetailTelur> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EditTelur(list: widget.list, index: widget.index)));
+                              builder: (context) => EditTelur(
+                                  list: widget.list, index: widget.index)));
                     },
                     child: const Text("EDIT"),
                   ),

@@ -26,6 +26,7 @@ class _PendataanTelurState extends State<PendataanTelur> {
       "berat": berat.text,
     });
     var data = json.decode(respone.body);
+    //print(data);
     if (data == "Sukses") {
       return true;
     }
@@ -36,8 +37,22 @@ class _PendataanTelurState extends State<PendataanTelur> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tambah Data Telur"),
+        title: Text("Tambah Data Telur",
+        style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          hoverColor: Colors.transparent,
+          splashRadius: 20,
+        ),
+        centerTitle: true,
       ),
+      backgroundColor: Colors.amber[200],
       body: ListView(children: <Widget>[
         Form(
           key: formKey,
@@ -50,12 +65,13 @@ class _PendataanTelurState extends State<PendataanTelur> {
                     controller: id_telur,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Id Telur";
+                        return "Id Telur Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: "Id Telur",
+                      hintText: "Masukan Id Telur",
+                      labelText: "Id Telur",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
                     ),
@@ -65,12 +81,12 @@ class _PendataanTelurState extends State<PendataanTelur> {
                     controller: tanggal,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Tanggal";
+                        return "Tanggal Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "Tanggal",
+                        hintText: "Masukan Tanggal",
                         labelText: "Tanggal",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
@@ -80,12 +96,12 @@ class _PendataanTelurState extends State<PendataanTelur> {
                     controller: berat,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Masukan Berat";
+                        return "Berat Tidak Boleh Kosong";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "Berat",
+                        hintText: "Masukan Berat",
                         labelText: "Berat",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
@@ -116,7 +132,7 @@ class _PendataanTelurState extends State<PendataanTelur> {
                         });
                       }
                     },
-                    child: Text("Simpan"),
+                    child: Text("Simpan",style: TextStyle(color: Colors.white)),
                   )
                 ],
               )),

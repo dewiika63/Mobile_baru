@@ -70,7 +70,7 @@ class _DetailKebutuhanState extends State<DetailKebutuhan> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const EditKebutuhan()));
+                              builder: (context) =>  EditKebutuhan(list: widget.list, index: widget.index,)));
                     },
                     child: const Text("EDIT"),
                   ),

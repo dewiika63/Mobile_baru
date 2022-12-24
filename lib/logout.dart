@@ -29,8 +29,11 @@ class LogoutPage extends StatelessWidget {
         ElevatedButton(
           //   color: Colors.orange,
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Login()));
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const Login()));
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: ((context) => Login())),
+                (route) => false);
           },
           child: const Text("Iya"),
         ),

@@ -1,10 +1,9 @@
-import 'package:coba_login/jadwal_memberi_makan.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 
-class Jadwal extends StatelessWidget {
-  const Jadwal({Key? key}) : super(key: key);
+class MemberiMakan extends StatelessWidget {
+  const MemberiMakan({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class Jadwal extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.orange,
         title: const Text(
-          'Jadwal',
+          'Jadwal Memberi Pakan',
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -88,69 +87,33 @@ class Jadwal extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text(
-                      "J A D W A L",
+                      "Memberi Pakan",
                       style: TextStyle(fontSize: 30, color: Colors.black),
                     ),
                   ],
                 ),
               ),
-              const Text("Memberi Pakan"),
+              const Text("Pakan Pagi"),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 50,
                 width: 300,
-                child: Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MemberiMakan()));
-                        },
-                        child: Text(
-                          'Pagi, Siang, Sore',
-                          style: TextStyle(color: Colors.black),
-                        ))),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
               ),
-              const Text("Mengambil Telur"),
+              const Text("Pakan Siang"),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 50,
                 width: 300,
-               // width: 300,
-                child: Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MemberiMakan()));
-                        },
-                        child: Text(
-                          'Pagi, Siang, Sore',
-                          style: TextStyle(color: Colors.black),
-                        ))),
-                // child: Center(
-                //   child: TextButton(
-                //   onPressed: () {
-                //           Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                   builder: (context) => const MemberiMakan()));
-                //         },
-                //   child: Text('Pagi, Siang, Sore'
-                //   style: TextStyle(color: Colors.black)),
-                // ))),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
               ),
-              const Text("Memberi Vaksin"),
+              const Text("Pakan Sore"),
               Container(
                 margin: const EdgeInsets.all(15),
                 height: 50,

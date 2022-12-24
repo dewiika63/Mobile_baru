@@ -1,9 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class Ayam extends StatelessWidget {
+class Ayam extends StatefulWidget {
   const Ayam({Key? key}) : super(key: key);
+
+  @override
+  State<Ayam> createState() => _AyamState();
+}
+
+class _AyamState extends State<Ayam> {
+  List<dynamic> data = [];
+
+  void getData() async {
+    var respone = await http.get(
+      Uri.parse('http://127.0.0.1/kub/api/home_ayam.php'),
+    );
+
+    setState(() {
+      data = jsonDecode(respone.body);
+    });
+    // print(data[2]['penjualan_telur']);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +120,7 @@ class Ayam extends StatelessWidget {
             margin: const EdgeInsets.all(15),
             height: 50,
             width: 300,
+            child: Center(child: Text(data[1]['ayam_terjual'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -103,6 +131,7 @@ class Ayam extends StatelessWidget {
             margin: const EdgeInsets.all(15),
             height: 50,
             width: 300,
+            child: Center(child: Text(data[2]['ayam_mati'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -113,6 +142,7 @@ class Ayam extends StatelessWidget {
             margin: const EdgeInsets.all(15),
             height: 50,
             width: 300,
+            child: Center(child: Text(data[0]['stok_ayam'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,

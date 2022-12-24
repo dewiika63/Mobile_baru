@@ -1,4 +1,5 @@
 import 'package:coba_login/databarang_ayam.dart';
+import 'package:coba_login/utama.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -136,6 +137,9 @@ class _EditAyamState extends State<EditAyam> {
                                 .showSnackBar(snackBar);
                           }
                         });
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: ((context) => Utama())),
+                            (route) => false);
                         // _edit();
                         // Navigator.push(
                         //     context,
@@ -143,8 +147,10 @@ class _EditAyamState extends State<EditAyam> {
                         //         builder: (context) => DataBarangAyam()));
                       }
                     },
-                    child: Text("Edit",
-                    style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      "Edit",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   )
                 ],
               )),

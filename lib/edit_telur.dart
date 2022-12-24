@@ -1,6 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:coba_login/data_barang.dart';
 import 'package:coba_login/databarang_telur.dart';
+import 'package:coba_login/utama.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -171,6 +173,9 @@ class _EditTelurState extends State<EditTelur> {
                                 .showSnackBar(snackBar);
                           }
                         });
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: ((context) => Utama())),
+                            (route) => false);
                         // _edit();
                         // Navigator.push(
                         //     context,

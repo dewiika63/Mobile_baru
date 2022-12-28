@@ -118,8 +118,8 @@ class _AyamState extends State<Ayam> {
           const Text("Ayam Terjual"),
           Container(
             margin: const EdgeInsets.all(15),
-            height: 50,
-            width: 300,
+            height: 30,
+            width: 100,
             child: Center(child: Text(data[1]['ayam_terjual'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -129,8 +129,8 @@ class _AyamState extends State<Ayam> {
           const Text("Ayam Mati"),
           Container(
             margin: const EdgeInsets.all(15),
-            height: 50,
-            width: 300,
+            height: 30,
+            width: 100,
             child: Center(child: Text(data[2]['ayam_mati'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -140,8 +140,8 @@ class _AyamState extends State<Ayam> {
           const Text("Ayam Tersedia"),
           Container(
             margin: const EdgeInsets.all(15),
-            height: 50,
-            width: 300,
+            height: 30,
+            width: 100,
             child: Center(child: Text(data[0]['stok_ayam'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),

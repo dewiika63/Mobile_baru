@@ -23,7 +23,7 @@ class _TelurState extends State<Telur> {
     setState(() {
       data = jsonDecode(respone.body);
     });
-    print(data[2]['penjualan_telur']);
+    //  print(data[2]['penjualan_telur']);
   }
 
   @override
@@ -118,11 +118,22 @@ class _TelurState extends State<Telur> {
               ],
             ),
           ),
+          const Text("Telur Terjual"),
+          Container(
+            margin: const EdgeInsets.all(15),
+            height: 30,
+            width: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            child: Center(child: Text(data[2]['penjualan_telur'])),
+          ),
           const Text("Telur Dipanen"),
           Container(
             margin: const EdgeInsets.all(15),
-            height: 50,
-            width: 300,
+            height: 30,
+            width: 100,
             child: Center(child: Text(data[1]['pendapatan_telur'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -132,25 +143,15 @@ class _TelurState extends State<Telur> {
           const Text("Stok Telur"),
           Container(
             margin: const EdgeInsets.all(15),
-            height: 50,
-            width: 300,
+            height: 30,
+            width: 100,
             child: Center(child: Text(data[0]['stok_telur'])),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
             ),
           ),
-          const Text("Telur Terjual"),
-          Container(
-            margin: const EdgeInsets.all(15),
-            height: 50,
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Center(child: Text(data[2]['penjualan_telur'])),
-          )
+          
         ])
       ]),
     );

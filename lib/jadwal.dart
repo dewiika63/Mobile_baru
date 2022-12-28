@@ -1,10 +1,36 @@
-import 'package:coba_login/jadwal_memberi_makan.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class Jadwal extends StatelessWidget {
+class Jadwal extends StatefulWidget {
   const Jadwal({Key? key}) : super(key: key);
+
+  @override
+  State<Jadwal> createState() => _JadwalState();
+}
+
+class _JadwalState extends State<Jadwal> {
+  List<dynamic> data = [];
+
+  void getData() async {
+    var respone = await http.get(
+      Uri.parse('http://127.0.0.1/kub/api/home_jadwal.php'),
+    );
+
+    setState(() {
+      data = jsonDecode(respone.body);
+    });
+    print(data[0]['jam']);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,83 +109,247 @@ class Jadwal extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(15),
                 color: Colors.transparent,
-                height: 50,
+                height: 30,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text(
-                      "J A D W A L",
-                      style: TextStyle(fontSize: 30, color: Colors.black),
+                      "Memberi Pakan",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepOrange),
                     ),
                   ],
                 ),
               ),
-              const Text("Memberi Pakan"),
               Container(
-                margin: const EdgeInsets.all(15),
-                height: 50,
-                width: 300,
-                child: Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MemberiMakan()));
-                        },
-                        child: Text(
-                          'Pagi, Siang, Sore',
-                          style: TextStyle(color: Colors.black),
-                        ))),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 17,
+                        width: 124,
+                        child: Center(
+                          child: Text('Pakan Pagi'),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                        )),
+                    // Text("Pakan Siang"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 17,
+                        width: 124,
+                        child: Center(
+                          child: Text('Pakan Siang'),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                        )),
+                    // Text("Pakan Sore"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 17,
+                        width: 124,
+                        child: Center(
+                          child: Text('Pakan Sore'),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                        )),
+                  ],
                 ),
               ),
-              const Text("Mengambil Telur"),
               Container(
-                margin: const EdgeInsets.all(15),
-                height: 50,
-                width: 300,
-               // width: 300,
-                child: Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MemberiMakan()));
-                        },
-                        child: Text(
-                          'Pagi, Siang, Sore',
-                          style: TextStyle(color: Colors.black),
-                        ))),
-                // child: Center(
-                //   child: TextButton(
-                //   onPressed: () {
-                //           Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                   builder: (context) => const MemberiMakan()));
-                //         },
-                //   child: Text('Pagi, Siang, Sore'
-                //   style: TextStyle(color: Colors.black)),
-                // ))),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[0]['jam']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                    // Text("Pakan Siang"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[1]['jam']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                    // Text("Pakan Sore"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[2]['jam']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                  ],
                 ),
               ),
-              const Text("Memberi Vaksin"),
+//Mengambil Telur
               Container(
                 margin: const EdgeInsets.all(15),
-                height: 50,
-                width: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                color: Colors.transparent,
+                height: 30,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Mengambil Telur",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepOrange),
+                    ),
+                  ],
                 ),
-              )
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 17,
+                        width: 124,
+                        child: Center(
+                          child: Text('Ambil Telur Pagi'),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                        )),
+                    // Text("Pakan Siang"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 17,
+                        width: 124,
+                        child: Center(
+                          child: Text('Pakan Siang'),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                        )),
+                    // Text("Pakan Sore"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 17,
+                        width: 124,
+                        child: Center(
+                          child: Text('Pakan Sore'),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                        )),
+                  ],
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[3]['jam']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                    // Text("Pakan Siang"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[4]['jam']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                    // Text("Pakan Sore"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[5]['jam']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                  ],
+                ),
+              ),
+//Memberi Vaksin
+              Container(
+                margin: const EdgeInsets.all(15),
+                color: Colors.transparent,
+                height: 30,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Memberi Vaksin",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepOrange),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 124,
+                        child: Center(
+                          child: Text(data[6]['tanggal']),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        )),
+                  ],
+                ),
+              ),
             ],
           )
         ],

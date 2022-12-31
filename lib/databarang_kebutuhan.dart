@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
+import 'env.dart';
+
 class DataBarangKebutuhan extends StatefulWidget {
   const DataBarangKebutuhan({Key? key}) : super(key: key);
 
@@ -18,9 +20,10 @@ class _DataBarangKebutuhanState extends State<DataBarangKebutuhan> {
   List _listkebutuhan = [];
 
   Future _getkebutuhan() async {
+    String url = "${Env.URL_PERFIX}/api/brg_kbth_ayam.php";
     try {
-      final respone = await http
-          .get(Uri.parse("http://127.0.0.1/kub/api/brg_kbth_ayam.php"));
+      final respone = await http.post(
+      Uri.parse(url));
       if (respone.statusCode == 200) {
         //  print(respone.body);
         final kebutuhan = jsonDecode(respone.body);

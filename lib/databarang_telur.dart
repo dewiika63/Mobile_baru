@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
+import 'env.dart';
+
 class DataBarangTelur extends StatefulWidget {
   const DataBarangTelur({Key? key}) : super(key: key);
 
@@ -17,9 +19,11 @@ class _DataBarangTelurState extends State<DataBarangTelur> {
   List _listtelur = [];
 
   Future _gettelur() async {
+    String url = "${Env.URL_PERFIX}/api/brg_telur.php";
     try {
       final respone =
-          await http.get(Uri.parse("http://127.0.0.1/kub/api/brg_telur.php"));
+          await http.post(
+      Uri.parse(url));
       if (respone.statusCode == 200) {
         //  print(respone.body);
         final telur = jsonDecode(respone.body);

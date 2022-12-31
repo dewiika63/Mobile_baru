@@ -34,7 +34,10 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'dart:convert';
+
+import 'env.dart';
 //import 'env.dart';
 
 class PendataanAyam extends StatefulWidget {
@@ -43,6 +46,7 @@ class PendataanAyam extends StatefulWidget {
 }
 
 class _PendataanAyamState extends State<PendataanAyam> {
+  //late DateTime waktu;
   final formKey = GlobalKey<FormState>();
   // TextEditingController controllerid_pengeluaran_ayam =
   //     new TextEditingController();
@@ -52,15 +56,14 @@ class _PendataanAyamState extends State<PendataanAyam> {
   TextEditingController jumlah = new TextEditingController();
 
   _simpan() async {
+    String url = "${Env.URL_PERFIX}/api/pengeluaran_ayam.php";
     //   var respone = await http
-    final respone = await http.post(
-        Uri.parse("http://127.0.0.1/kub/api/pengeluaran_ayam.php"),
-        body: {
-          "id_ayam": id_ayam.text,
-          "keterangan": keterangan.text,
-          "tanggal": tanggal.text,
-          "jumlah": jumlah.text,
-        });
+    final respone = await http.post(Uri.parse(url), body: {
+      "id_ayam": id_ayam.text,
+      "keterangan": keterangan.text,
+      "tanggal": tanggal.text,
+      "jumlah": jumlah.text,
+    });
     var data = json.decode(respone.body);
     // print(data);
     if (data == "Sukses") {
@@ -69,6 +72,11 @@ class _PendataanAyamState extends State<PendataanAyam> {
     return false;
   }
 
+  @override
+  void initState() {
+    tanggal.text = "";
+    super.initState();
+  }
   // void PendataanAyam() {
   //   var evn;
   //   http.post(Uri.parse("http://127.0.0.1/kub/api/pengeluaran_ayam.php"),
@@ -84,8 +92,7 @@ class _PendataanAyamState extends State<PendataanAyam> {
     return Scaffold(
       appBar: AppBar(
         title:
-            new Text("Pengeluaran Ayam", 
-            style: TextStyle(color: Colors.white)),
+            new Text("Pengeluaran Ayam", style: TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -153,6 +160,32 @@ class _PendataanAyamState extends State<PendataanAyam> {
                         labelText: "Tanggal",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1999),
+                        lastDate: DateTime(2050),
+                      );
+                      if (pickedDate != null) {
+                        String formatDate =
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
+                        setState(() {
+                          tanggal.text = formatDate;
+                        });
+                      } else {}
+                    },
+                    // onTap: () => showDatePicker(
+                    //         context: context,
+                    //         initialDate: DateTime.now(),
+                    //         firstDate: DateTime(2000, 1, 1),
+                    //         lastDate: DateTime(2050, 12, 31))
+                    //     .then((value) {
+                    //   setState(() {
+                    //     waktu = value!;
+                    //   });
+                    // }),
                   ),
                   Padding(padding: EdgeInsets.all(10)),
                   TextFormField(
@@ -211,8 +244,10 @@ class _PendataanAyamState extends State<PendataanAyam> {
                     //   });
                     // }
                     ,
-                    child: Text("Simpan",
-                    style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      "Simpan",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   )
                 ],
               )),

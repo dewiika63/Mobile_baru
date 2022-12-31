@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'dart:convert';
+
+import 'env.dart';
 
 class PendataanTelur extends StatefulWidget {
   const PendataanTelur({Key? key}) : super(key: key);
@@ -18,9 +21,9 @@ class _PendataanTelurState extends State<PendataanTelur> {
 
   //void tambahTelur() {
   _simpan() async {
+    String url = "${Env.URL_PERFIX}/api/tambah_telur.php";
     //   var respone = await http
-    final respone = await http
-        .post(Uri.parse("http://127.0.0.1/kub/api/tambah_telur.php"), body: {
+    final respone = await http.post(Uri.parse(url), body: {
       "id_telur": id_telur.text,
       "tanggal": tanggal.text,
       "berat": berat.text,
@@ -34,11 +37,16 @@ class _PendataanTelurState extends State<PendataanTelur> {
   }
 
   @override
+  void initState() {
+    tanggal.text = "";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tambah Data Telur",
-        style: TextStyle(color: Colors.white)),
+        title: Text("Tambah Data Telur", style: TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -90,6 +98,21 @@ class _PendataanTelurState extends State<PendataanTelur> {
                         labelText: "Tanggal",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1999),
+                        lastDate: DateTime(2050),
+                      );
+                      if (pickedDate != null) {
+                        String formatDate =
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
+                        setState(() {
+                          tanggal.text = formatDate;
+                        });
+                      } else {}
+                    },
                   ),
                   Padding(padding: EdgeInsets.all(10)),
                   TextFormField(
@@ -132,7 +155,8 @@ class _PendataanTelurState extends State<PendataanTelur> {
                         });
                       }
                     },
-                    child: Text("Simpan",style: TextStyle(color: Colors.white)),
+                    child:
+                        Text("Simpan", style: TextStyle(color: Colors.white)),
                   )
                 ],
               )),

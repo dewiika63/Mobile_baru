@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'env.dart';
+
 class EditAyam extends StatefulWidget {
   final List list;
   final int index;
@@ -27,8 +29,9 @@ class _EditAyamState extends State<EditAyam> {
   }
 
   _edit() async {
-    final respone = await http
-        .post(Uri.parse("http://127.0.0.1/kub/api/edit_ayam.php"), body: {
+    String url = "${Env.URL_PERFIX}/api/edit_ayam.php";
+    final respone = await http.post(
+      Uri.parse(url), body: {
       "id_ayam": widget.list[widget.index]['id_ayam'],
       "jumlah_ayam": jumlah_ayam.text,
     });

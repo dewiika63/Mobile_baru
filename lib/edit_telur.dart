@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'env.dart';
+
 class EditTelur extends StatefulWidget {
   final List list;
   final int index;
@@ -46,8 +48,9 @@ class _EditTelurState extends State<EditTelur> {
   //   });
   // }
   _edit() async {
-    final respone = await http
-        .post(Uri.parse("http://127.0.0.1/kub/api/edit_telur.php"), body: {
+    String url = "${Env.URL_PERFIX}/api/edit_telur.php";
+    final respone = await http.post(
+      Uri.parse(url), body: {
       "id_telur": widget.list[widget.index]['id_telur'],
       "gread": gread.text,
       "berat_telur": berat_telur.text,

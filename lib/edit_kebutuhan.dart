@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'env.dart';
+
 class EditKebutuhan extends StatefulWidget {
   final List list;
   final int index;
@@ -21,8 +23,9 @@ class _EditKebutuhanState extends State<EditKebutuhan> {
   late TextEditingController jumlah_kbth;
 
   _edit() async {
-    final respone = await http
-        .post(Uri.parse("http://127.0.0.1/kub/api/edit_kbth_ayam.php"), body: {
+    String url = "${Env.URL_PERFIX}/api/edit_kbth_ayam.php";
+    final respone = await http.post(
+      Uri.parse(url), body: {
       "id_kbth": widget.list[widget.index]['id_kbth'],
       //"id_kbth": id_kbth,
       "nama_kbth": nama_kbth.text,

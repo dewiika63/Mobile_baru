@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
+import 'env.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -45,9 +47,9 @@ class _LoginState extends State<Login> {
   //   }
   // }
   void prosesLogin() async {
+    String url = "${Env.URL_PERFIX}/api/login.php";
     if (_formKey.currentState!.validate()) {
-      final response = await http
-          .post(Uri.parse("http://127.0.0.1/kub/api/login.php"), body: {
+      final response = await http.post(Uri.parse(url), body: {
         "email": emailInput.text,
         "password": passowrdInput.text,
       });
@@ -182,23 +184,35 @@ class _LoginState extends State<Login> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Card(
-                      color: Colors.amber[800],
-                      elevation: 5,
-                      child: SizedBox(
-                        height: 40,
-                        width: 100,
-                        child: InkWell(
-                          splashColor: Colors.white,
-                          onTap: () => prosesLogin(),
-                          child: const Center(
-                              child: Text(
-                            "Login",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          )),
-                        ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      onPressed: () {
+                        prosesLogin();
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white),
                       ),
-                    ),
+                    )
+                    // Card(
+                    //   color: Colors.amber[800],
+                    //   elevation: 5,
+                    //   child: SizedBox(
+                    //     height: 40,
+                    //     width: 100,
+                    //     child: InkWell(
+                    //       splashColor: Colors.white,
+                    //       onTap: () => prosesLogin(),
+                    //       child: const Center(
+                    //           child: Text(
+                    //         "Login",
+                    //         style: TextStyle(fontSize: 20, color: Colors.white),
+                    //       )),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               )

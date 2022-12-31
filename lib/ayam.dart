@@ -4,6 +4,8 @@ import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'env.dart';
+
 class Ayam extends StatefulWidget {
   const Ayam({Key? key}) : super(key: key);
 
@@ -15,8 +17,9 @@ class _AyamState extends State<Ayam> {
   List<dynamic> data = [];
 
   void getData() async {
-    var respone = await http.get(
-      Uri.parse('http://127.0.0.1/kub/api/home_ayam.php'),
+    String url = "${Env.URL_PERFIX}/api/home_ayam.php";
+    var respone = await http.post(
+      Uri.parse(url)
     );
 
     setState(() {

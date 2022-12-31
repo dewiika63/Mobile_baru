@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:http/http.dart' as http;
 
+import 'env.dart';
+
 class Telur extends StatefulWidget {
   const Telur({Key? key}) : super(key: key);
 
@@ -16,8 +18,9 @@ class _TelurState extends State<Telur> {
   List<dynamic> data = [];
 
   void getData() async {
-    var respone = await http.get(
-      Uri.parse('http://127.0.0.1/kub/api/home_telur.php'),
+    String url = "${Env.URL_PERFIX}/api/home_telur.php";
+    var respone = await http.post(
+      Uri.parse(url),
     );
 
     setState(() {

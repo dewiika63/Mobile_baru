@@ -12,7 +12,7 @@ class LogoutPage extends StatelessWidget {
     return AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
       backgroundColor: Colors.amber[100],
-      title: const Text("Logout"),
+      title: const Text("Logout", style: TextStyle(color: Colors.black)),
       titleTextStyle: const TextStyle(fontSize: 25),
       content: const Text("Apakah anda yakin untuk keluar?"),
       actions: [

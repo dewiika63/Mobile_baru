@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'dart:convert';
+
+import 'env.dart';
 
 class PendataanKebutuhan extends StatefulWidget {
   const PendataanKebutuhan({Key? key}) : super(key: key);
@@ -18,9 +21,10 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
 
   //void tambahTelur() {
   _simpan() async {
+    String url = "${Env.URL_PERFIX}/api/pengeluaran_kebutuhan.php";
     //   var respone = await http
     final respone = await http.post(
-        Uri.parse("http://127.0.0.1/kub/api/pengeluaran_kebutuhan.php"),
+      Uri.parse(url),
         body: {
           "id_kbth": id_kbth.text,
           "tanggal": tanggal.text,
@@ -32,7 +36,12 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
     }
     return false;
   }
-
+  
+@override
+  void initState() {
+    tanggal.text = "";
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,6 +99,22 @@ class _PendataanKebutuhanState extends State<PendataanKebutuhan> {
                         labelText: "Tanggal",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
+                            readOnly: true,
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1999),
+                        lastDate: DateTime(2050),
+                      );
+                      if (pickedDate != null) {
+                        String formatDate =
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
+                        setState(() {
+                          tanggal.text = formatDate;
+                        });
+                      } else {}
+                    },
                   ),
                   Padding(padding: EdgeInsets.all(10)),
                   TextFormField(

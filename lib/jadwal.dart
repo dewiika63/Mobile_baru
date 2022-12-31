@@ -4,6 +4,8 @@ import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'env.dart';
+
 class Jadwal extends StatefulWidget {
   const Jadwal({Key? key}) : super(key: key);
 
@@ -15,8 +17,9 @@ class _JadwalState extends State<Jadwal> {
   List<dynamic> data = [];
 
   void getData() async {
-    var respone = await http.get(
-      Uri.parse('http://127.0.0.1/kub/api/home_jadwal.php'),
+    String url = "${Env.URL_PERFIX}/api/home_jadwal.php";
+    var respone = await http.post(
+      Uri.parse(url),
     );
 
     setState(() {
@@ -56,6 +59,7 @@ class _JadwalState extends State<Jadwal> {
         centerTitle: true,
       ),
       body: ListView(
+        //scrollDirection: Axis.horizontal,
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -131,7 +135,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 17,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text('Pakan Pagi'),
                         ),
@@ -143,7 +147,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 17,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text('Pakan Siang'),
                         ),
@@ -155,7 +159,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 17,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text('Pakan Sore'),
                         ),
@@ -174,7 +178,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[0]['jam']),
                         ),
@@ -186,7 +190,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[1]['jam']),
                         ),
@@ -198,7 +202,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[2]['jam']),
                         ),
@@ -235,7 +239,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 17,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text('Ambil Telur Pagi'),
                         ),
@@ -247,9 +251,9 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 17,
-                        width: 124,
+                        width: 115,
                         child: Center(
-                          child: Text('Pakan Siang'),
+                          child: Text('Ambil Telur Siang'),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -259,9 +263,9 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 17,
-                        width: 124,
+                        width: 115,
                         child: Center(
-                          child: Text('Pakan Sore'),
+                          child: Text('Ambil Telur Sore'),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -278,7 +282,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[3]['jam']),
                         ),
@@ -290,7 +294,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[4]['jam']),
                         ),
@@ -302,7 +306,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[5]['jam']),
                         ),
@@ -339,7 +343,7 @@ class _JadwalState extends State<Jadwal> {
                     Container(
                         margin: const EdgeInsets.all(10),
                         height: 30,
-                        width: 124,
+                        width: 115,
                         child: Center(
                           child: Text(data[6]['tanggal']),
                         ),

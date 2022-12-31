@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 import 'edit_telur.dart';
+import 'env.dart';
 
 class DataBarangAyam extends StatefulWidget {
   const DataBarangAyam({Key? key}) : super(key: key);
@@ -19,9 +20,11 @@ class _DataBarangAyamState extends State<DataBarangAyam> {
   List _listayam = [];
 
   Future _getayam() async {
+    String url = "${Env.URL_PERFIX}/api/brg_ayam.php";
     try {
       final respone =
-          await http.get(Uri.parse("http://127.0.0.1/kub/api/brg_ayam.php"));
+          await http.post(
+      Uri.parse(url));
       if (respone.statusCode == 200) {
         //  print(respone.body);
         final ayam = jsonDecode(respone.body);

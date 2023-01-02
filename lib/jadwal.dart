@@ -111,22 +111,46 @@ class _JadwalState extends State<Jadwal> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.all(15),
-                color: Colors.transparent,
-                height: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Memberi Pakan",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange),
-                    ),
-                  ],
-                ),
-              ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 250,
+                        child: Center(
+                          child: Text(
+                            'Memberi Pakan',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.orange,
+                        )),
+                  ])),
+              // Container(
+              //   margin: const EdgeInsets.all(15),
+              //   color: Colors.transparent,
+              //   height: 30,
+              //   width: 250,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: const [
+              //       Text(
+              //         "Memberi Pakan",
+              //         style: TextStyle(
+              //             fontSize: 20,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.deepOrange),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -215,22 +239,45 @@ class _JadwalState extends State<Jadwal> {
               ),
 //Mengambil Telur
               Container(
-                margin: const EdgeInsets.all(15),
-                color: Colors.transparent,
-                height: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Mengambil Telur",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange),
-                    ),
-                  ],
-                ),
-              ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 250,
+                        child: Center(
+                          child: Text(
+                            'Mengambil Telur',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.orange,
+                        )),
+                  ])),
+              // Container(
+              //   margin: const EdgeInsets.all(15),
+              //   color: Colors.transparent,
+              //   height: 30,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: const [
+              //       Text(
+              //         "Mengambil Telur",
+              //         style: TextStyle(
+              //             fontSize: 20,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.deepOrange),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -319,22 +366,45 @@ class _JadwalState extends State<Jadwal> {
               ),
 //Memberi Vaksin
               Container(
-                margin: const EdgeInsets.all(15),
-                color: Colors.transparent,
-                height: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Memberi Vaksin",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange),
-                    ),
-                  ],
-                ),
-              ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                    // Text("Pakan Pagi"),
+                    Container(
+                        margin: const EdgeInsets.all(10),
+                        height: 30,
+                        width: 250,
+                        child: Center(
+                          child: Text(
+                            'Memberi Vaksin',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.orange,
+                        )),
+                  ])),
+              // Container(
+              //   margin: const EdgeInsets.all(15),
+              //   color: Colors.transparent,
+              //   height: 30,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: const [
+              //       Text(
+              //         "Memberi Vaksin",
+              //         style: TextStyle(
+              //             fontSize: 20,
+              //             fontWeight: FontWeight.bold,
+              //             color: Colors.deepOrange),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
